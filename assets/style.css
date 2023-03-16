@@ -1,0 +1,218 @@
+/* Importing Google Font from https://fonts.google.com/specimen/Poppins?query=poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+H1 {
+    color: white;   
+}    
+P,A {
+    color: lightgray;
+}
+
+H1 {
+    font-size: 10px;
+}
+
+P {
+    margin: 4px;
+    font-size: 9px;
+    text-align: center;
+}
+
+A {
+    font-size: 9px;
+    color: white;
+}
+
+.how-text {
+    font-size: 16px;
+}
+
+.H1-1 {
+    font-size: 150%;
+}
+
+.H1-2 {
+    font-size: 100%;
+    color: var(--text-color-1);
+}
+
+:root {
+    --text-color-1:grey;
+    --text-color-2:lightgrey;
+    --text-color-3:white;
+    --background-color-1:#171717;
+    --background-color-2:#313131;
+
+}
+
+
+/* ====== MENU ====== */
+
+.main-menu-container {
+    width : 20%;
+    height : 97vmin;
+    margin : 0px;
+    background-color: var(--background-color-2);
+    padding: 0px;
+    float:left;
+    justify-content: center;
+}
+
+.title-container {
+    top: 5%;
+    justify-content: center;
+    background-color: var(--background-color-2);
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+
+.chart-selection-container {
+    top: 8%;
+    left: 5%;
+    border: 1px solid white;
+    width : 90%;
+    margin : 10px 0;
+    background-color: var(--background-color-2);
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+
+.option-chart {
+    top: 5%;
+    left: 3.5%;
+    width : 90%;
+    height : 20%;
+    margin : 0px;
+    background-color: var(--background-color-2);
+    padding: 4px;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+}
+
+.option-text-chart {
+    width: 20vmin;
+    position: relative;
+    float: left;
+}
+
+.option-icon-chart {
+    width: 5vmin;
+    position:relative;
+    font-size: 130%;
+}
+
+.option-chart:hover {
+    background-color: #171717;
+}
+
+.more-info-container {
+    width : 90%;
+    background-color: var(--background-color-2);
+    border: 1px solid white;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    top: 8%;
+    left: 5%;
+}
+
+
+/* ====== BIG CONTAINER ====== */
+
+.big-container {
+    width : 73%;
+    height : 91.5vmin;
+    margin : 0px 10px;
+    background-color: var(--background-color-2);
+    padding: 20px;
+    float: right;
+}
+
+
+/* ====== SCATTERPLOT DATASET1 ====== */
+
+.select-fields-container {
+    width : 20%;
+    height : 90%;
+    border: 1px solid white;
+    background-color: #171717;
+    padding: 20px;
+    float:left;
+    clear: none;
+    justify-content: center;
+}
+
+.select-field-container {
+    width : 80%;
+    height : 90%;
+    background-color: #171717;
+    padding: 20px;
+    float:left;
+    clear: none;
+    justify-content: center;   
+    position: relative;
+    text-align: center;
+}
+
+.scatter-plot-container {
+    width : 70%;
+    background-color: #171717;
+    padding: 20px;
+    float:right;
+    clear: none;
+    justify-content: center;
+}
+
+/* ====== CORRELATIONPLOT DATASET1 ====== */
+
+.select-boxes-container {
+    width : 20%;
+    background-color: #171717;
+    border: 1px solid white;
+    padding: 2%;
+    color: lightgray;
+    display: inline-block;
+}
+
+
+.corr-plot-container {
+    width : 70%;
+    background-color: #171717;
+    float:right;
+}
+
+/* ====== HISTOGRAM CONTAINER ======= */
+
+.hist-plot-container {
+    width : 30%;
+    background-color: var(--background-color-2);
+    padding: 30px;
+    float:right;
+    justify-content: center;
+}
+
+/* Custom Boxicons */
+
+
+.bxl-spotify {
+    font-size: 300%;
+}
+
+
+.bx {
+    position: relative;
+    top: 15%;
+}

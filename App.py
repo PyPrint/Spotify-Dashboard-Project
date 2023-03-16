@@ -7,127 +7,37 @@ import dash_daq as daq
 import dash_bootstrap_components as dbc
 import pandas as pd
 
-df = pd.read_csv('df.csv')
-df_genre = pd.read_csv('df_genre.csv')
-df_year = pd.read_csv('df_year.csv')
-
-list_columns_numerical = df.columns.tolist()
-list_columns_numerical.remove('genre')
-list_columns_numerical.remove('artist')
-list_columns_numerical.remove('song')
-list_columns_numerical
-
-#function that has a column name as input, and a graph name (for the label name) as output. 
-def map_col_name_to_graph_name(column_name):
-    columns = df.columns.tolist()
-    graph_names = ['Artist',
-     'Song Name',
-     'Duration (Milliseconds)',
-     'Explicit',
-     'Release Year',
-     'Popularity',
-     'Danceability',
-     'Energy',
-     'Key',
-     'Loudness (Db)',
-     'Mode',
-     'Speechiness',
-     'Acousticness',
-     'Instrumentalness',
-     'Liveness',
-     'Valence',
-     'Tempo (BPM)',
-     'Genre']
-    try: 
-        index = columns.index(column_name)
-    except:
-        print('This is not a column name!')
-    return graph_names[index]
+df = pd.read_csv('data/df.csv')
 
 
 
 # Create a dash application
-app = dash.Dash(__name__)
-
+app = dash.Dash(__name__, assets_url_path='\assets', use_pages=True)
+#print('dash.page_registry.values():',dash.page_registry.values())
 # REVIEW1: Clear the layout and do not display exception till callback gets executed
 app.config.suppress_callback_exceptions = True
 
 # Application layout
 app.layout = html.Div(children=[
-                                html.H1('Spotify Music Knowledge Dashboard'),
-                                html.Div([
-                                        html.Div([
-                                            html.H1('Scatterplot of 2D or 3D data')
-                                        ],), 
-                                        html.Div([
-                                            html.H1('Select field 1:', style={'margin-right': '2em'}), 
-                                            dcc.Dropdown(
-                                                options=[{'label': column, 'value': column} for i, column in enumerate(df.columns.tolist())],
-                                            id='input-scatter-1',value='loudness', clearable=False
-                                            )
-                                        ],),
-                                        html.Div([
-                                            html.H1('Select field 2:', style={'margin-right': '2em'}), 
-                                            dcc.Dropdown(
-                                                options=[{'label': column, 'value': column} for i, column in enumerate(df.columns.tolist())],
-                                            id='input-scatter-2',value='energy', clearable=False,
-                                            style={'width':'30px', 'padding':'3px', 'font-size':'10px', 'text-align-last':'center'}
-                                            )
-                                        ],),
-                                        html.Div([
-                                            html.H1('Select field 3:', style={'margin-right': '2em'}), 
-                                            dcc.Dropdown(
-                                                options=[{'label': column, 'value': column} for i, column in enumerate(df.columns.tolist())],
-                                            id='input-scatter-3',value='danceability', 
-                                            style={'width':'30px', 'padding':'3px', 'font-size':'10px', 'text-align-last':'center'}
-                                            )
-                                        ],),                                     
-                                        ],),
-                                html.Div([dcc.Graph(id='scatter',style={'width': '400px', 'height': '400px', 'font-size':'10px'})]),
-                                html.Div([dcc.Checklist(options=
-                                    [{'label': column, 'value': column} for i, column in enumerate(list_columns_numerical)],
-                                    value=list_columns_numerical,
-                                    id='input-corr')
-                                ]),
-                                html.Div([dcc.Graph(id='corr',style={'width': '800px', 'height': '800px', 'font-size':'20px'})]),
-    #style={'width':'100px', 'padding':'3px', 'font-size':'15px', 'line-height':'1', 'text-align-last':'center', 'color': '#white !important', 'border':'0','background':'#000000'}
-                                            
-    #html.Div([
-    #daq.StopButton(
-    #    id='my-stop-button-1',
-    #    label='Default',
-    #    n_clicks=0
-    #),
-    #html.Div(id='stop-button-output-1')])
-                               ],
+                                html.Div([html.Div([html.H1(['Spotify Music Knowledge Dashboard']),html.A(html.I(className='bx bxl-spotify'), href="https://open.spotify.com/playlist/37i9dQZF1F0sijgNaJdgit?si=e9f68e329f52464b")], className='title-container'), 
+                                          html.Div([dcc.Link(html.Div([html.Div(html.P('Introduction of the dashboard'), className='option-text-chart'), html.Div([html.I(className='bx bx-cog')], className='option-icon-chart')], className='option-chart'), href='/'), 
+                                                    dcc.Link(html.Div([html.Div(html.P('Information about the Spotify dataset'), className='option-text-chart'), html.Div([html.I(className='bx bx-info-circle')], className='option-icon-chart')], className='option-chart'), href='/informationdataset'),
+                                                    html.Div([html.Div(html.A('Github Repository', href='https://github.com/PyPrint/Spotify-Dashboard-Project'), className='option-text-chart'), html.Div([html.I(className='bx bxl-github')], className='option-icon-chart')], className='option-chart')],className='more-info-container'),    
+                                          html.Div([html.H1('Original dataset'), 
+                                                    dcc.Link(html.Div([html.Div(html.P('Dataset'), className='option-text-chart'), html.Div([html.I(className='bx bx-data')], className='option-icon-chart')], className='option-chart'), href='/dataset1'),
+                                                    dcc.Link(html.Div([html.Div(html.P('Scatter Plot'), className='option-text-chart'), html.Div([html.I(className='bx bx-scatter-chart')], className='option-icon-chart')], className='option-chart'), href='/dataset1scatter'), 
+                                                    dcc.Link(html.Div([html.Div(html.P('Correlation Plot'), className='option-text-chart'), html.Div([html.I(className='bx bx-network-chart')], className='option-icon-chart')], className='option-chart'), href='/dataset1correlation'),
+                                                    dcc.Link(html.Div([html.Div(html.P('Histogram Plot'), className='option-text-chart'), html.Div([html.I(className='bx bx-bar-chart')], className='option-icon-chart')], className='option-chart'),href='/dataset1hist')], className='chart-selection-container'),
+                                          html.Div([html.H1('Dataset grouped by Release Year'), 
+                                                    dcc.Link(html.Div([html.Div(html.P('Dataset'), className='option-text-chart'), html.Div([html.I(className='bx bx-data')], className='option-icon-chart')], className='option-chart'), href='/dataset2'), 
+                                                    dcc.Link(html.Div([html.Div(html.P('Correlation Plot'), className='option-text-chart'), html.Div([html.I(className='bx bx-network-chart')], className='option-icon-chart')], className='option-chart'), href='/dataset2correlation'), 
+                                                    dcc.Link(html.Div([html.Div(html.P('Line Plot'), className='option-text-chart'), html.Div([html.I(className='bx bx-line-chart')], className='option-icon-chart')], className='option-chart'), href='/dataset2line')], className='chart-selection-container'),
+                                          html.Div([html.H1('Dataset grouped by Genre'), 
+                                                    dcc.Link(html.Div([html.Div(html.P('Dataset'), className='option-text-chart'), html.Div([html.I(className='bx bx-data')], className='option-icon-chart')], className='option-chart'), href='/dataset3'), 
+                                                    dcc.Link(html.Div([html.Div(html.P('Scatter Plot'), className='option-text-chart'), html.Div([html.I(className='bx bx-scatter-chart')], className='option-icon-chart')], className='option-chart'), href='/dataset3scatter'), 
+                                                    dcc.Link(html.Div([html.Div(html.P('Correlation Plot'), className='option-text-chart'), html.Div([html.I(className='bx bx-network-chart')], className='option-icon-chart')], className='option-chart'), href='/dataset3correlation')], className='chart-selection-container')], className ='main-menu-container'),
+                                        html.Div([dash.page_container],className='big-container')
+                               ], style = {'width':'100%', 'height':'100%'}
     )
-                                
-@app.callback(
-    [Output(component_id='scatter', component_property='figure'),
-     Output(component_id='corr', component_property='figure')],
-    [Input(component_id='input-scatter-1', component_property='value'),
-     Input(component_id='input-scatter-2', component_property='value'),
-     Input(component_id='input-scatter-3', component_property='value'),
-     Input(component_id='input-corr', component_property='value'),
-    ],
-    prevent_initial_call=False)
-def multiple_callbacks(field1, field2, field3, list_corr):
-    df_copy = df.copy()
-    figure_scatter = px.scatter(df_copy, x=field1, y=field2, color=field3, template='plotly_dark')
-    figure_scatter.update_layout(
-    font=dict(
-        #family="Courier New, monospace",
-        size=10
-    ))
-    
-    figure_corr = px.imshow(df[list_corr].corr(), text_auto=True, aspect="auto", template='plotly_dark')
-    figure_scatter.update_layout(
-    font=dict(
-        #family="Courier New, monospace",
-        size=10
-    ))
-    
-    return figure_scatter, figure_corr
-
 if __name__ == '__main__':
     app.run_server(debug=False, use_reloader=False)

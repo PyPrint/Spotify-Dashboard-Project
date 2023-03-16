@@ -4,14 +4,14 @@
 
 #extracting archive.zip
 from zipfile import ZipFile
-with ZipFile("archive.zip", 'r') as zObject:
-    zObject.extractall()
+with ZipFile("data/archive.zip", 'r') as zObject:
+    zObject.extractall(path='data/')
 
 #data preprocessing
 import pandas as pd
 
 #saving the csv file extracted to a DataFrame object
-df=pd.read_csv('songs_normalize.csv')
+df=pd.read_csv('data/songs_normalize.csv')
 
 #dropping duplicates
 df.drop_duplicates(inplace=True)
@@ -20,7 +20,7 @@ df.drop_duplicates(inplace=True)
 df = df[df['genre'] != 'set()']
 
 #saving the dataframe to a csv file
-df.to_csv('df.csv', index=False)
+df.to_csv('data/df.csv', index=False)
 
 #importing sqlite3 to perform SQL statements on df in order to obtain new dataframes
 import sqlite3
@@ -78,5 +78,5 @@ df_genre = df_genre[df_genre['Number_of_songs'] > 3]
 df_genre.reset_index().drop(['index'], axis=1)
 
 #saving the dataframes to csv
-df_year.to_csv('df_year.csv', index=False)
-df_genre.to_csv('df_genre.csv', index=False)
+df_year.to_csv('data/df_year.csv', index=False)
+df_genre.to_csv('data/df_genre.csv', index=False)
