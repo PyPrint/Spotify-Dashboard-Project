@@ -1,0 +1,9 @@
+dash
+pandas
+zipfile
+dash_daq
+dash_bootstrap_components
+plotly
+matplotlib
+seaborn
+sqlite3
