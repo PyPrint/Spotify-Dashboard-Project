@@ -12,8 +12,32 @@ how can """, html.A("Feel the love", href="https://www.youtube.com/watch?v=oABEG
 """]
 
 dataset11 = """
-I manually downloaded the dataset from the website. I could have used the requests package or the kaggle API to do this, but this was just easier. I unzipped the file in the folder 
-and loaded the csv file using Pandas. After using some exploratory methods built in Pandas like .describe() and .info(). I went on to check for NULL values, duplicates and ordinary classes. 
+I manually downloaded the dataset from the website. I could have used the requests package or the kaggle API to do this, but downloading was easier. I unzipped the file in the folder 
+and loaded the csv file using Pandas. The fields or columns in this dataset are:"""
+
+datasetcolumns = """['Artist',
+     'Song Name',
+     'Duration (Milliseconds)',
+     'Explicit',
+     'Release Year',
+     'Popularity',
+     'Danceability',
+     'Energy',
+     'Key',
+     'Loudness (Db)',
+     'Mode',
+     'Speechiness',
+     'Acousticness',
+     'Instrumentalness',
+     'Liveness',
+     'Valence',
+     'Tempo (BPM)',
+     'Genre']"""
+
+
+dataset12 = """'Explicit' is a binary value which indicates if a song has curse words, energy is a measure of intensity and activity, key indicates in which key a track is in. E.g. C=0,
+mode is a binary value representing the modality of a track where major is 1, speechiness is a measure of presence of spoken words, liveness is a measure of an audience in the recording, valence is a measure of musical positiveness in the song. For more information, see the website linked above. 
+After using some exploratory methods built in Pandas like .describe() and .info(). I went on to check for NULL values, duplicates and ordinary classes. 
 The thought of preprocessing certain songs which have multiple genres crossed my mind, but I felt that this would generalize the genres too much. I used Matplotlib to draw the first scatter plots.
 Additionally, I used seaborn to draw the first correlation plot. I performed some EDA on both, you can find these comments in the Jupyter Notebook. 
 """
@@ -28,5 +52,7 @@ in the dataset. But these genres only had one or two songs present in the datase
 layout = html.Div([html.H1('Original dataset', className='H1-1'),
                   html.H1(dataset1, className='H1-2'),
                   html.H1(dataset11, className='H1-2'),
+                  html.H1(datasetcolumns, className='H1-2'),
+                  html.H1(dataset12, className='H1-2'),
                   html.H1('Two additional datasets', className='H1-1'),
                   html.H1(dataset2, className='H1-2'),], className='how-container')
