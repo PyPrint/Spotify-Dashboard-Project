@@ -1,4 +1,4 @@
-This interactive Spotify Music Knowledge Dashboard is the first portfolio project in a series of several deliverables. This dashboard can be used at the website: https://
+This interactive Spotify Music Knowledge Dashboard is the first portfolio project in a series of several deliverables. This dashboard can be used at the website: https://spotifymusicknowledgedashboard.onrender.com/
 
 To use this dashboard, first run the 'Data.py' file in the data folder. This will give you four csv files. 
 

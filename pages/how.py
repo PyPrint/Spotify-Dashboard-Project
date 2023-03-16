@@ -31,7 +31,7 @@ The last section accomodates a view of the dataset grouped by music genre, a sca
 """
 
 how6 = """
-To make the dashboard active and usable, it is uploaded to Heroku. Heroku is a service that hosts any plotly dash application for free online. 
+To make the dashboard active and usable, it is uploaded to Render. Render is a service that hosts any plotly dash application for free online. 
 """
 
 layout = html.Div([html.H1('Brief introduction of myself', className='H1-1'),
